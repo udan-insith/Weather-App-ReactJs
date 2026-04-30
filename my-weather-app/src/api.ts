@@ -1,4 +1,13 @@
-const API_KEY = import.meta.env.VITE_API_KEY;
+interface ImportMetaEnv {
+  readonly VITE_API_KEY: string;
+  // add other variables here...
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
+const API_KEY = (import.meta as any).env.VITE_API_KEY;
 
 export async function getWeather({ lat, lon }: { lat: number; lon: number }) {
   const res = await fetch(
